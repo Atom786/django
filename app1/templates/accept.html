@@ -1,0 +1,64 @@
+{% extends 'cu_dash.html' %}
+{% load static %}
+{% block Cu_Dash %}
+
+<div class="page-breadcrumb">
+    <div class="row align-items-center">
+        <div class="col-5">
+            <h4 class="page-title">Accepted Orders</h4>     
+        </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+  
+ 
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">All Orders Details</h4>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Sr. No.</th>
+                      <th>Product Img</th>
+                      <th>Product Name</th>
+                      <th>QTY</th>
+                      <th>Total Price</th>
+                      <th>Order Date</th>
+                      <th>Order Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                        {% for i in ord reversed %}
+                        
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+             <td> {% if i.prod.pro_img %}
+                                <img src="{{ i.prod.pro_img.url }}" title ="{{i.prod.pro_nm}}" width="150px">
+                              {% endif %}</td>
+                                <td>{{ i.prod.pro_nm }}</td>
+                                <td>{{ i.qty }}</td>
+                                <td>{{ i.tot_price }}</td>
+                                <td>{{ i.order_date }}</td>
+                                <td>
+                                  
+                                  {% if i.status == 'Yes' %}
+                                    <button class="btn btn-lg btn-success btn-sm" width="10" aria-disabled="true">Accepted</button><br><br><p>Delivery within 3 day</p>
+                                  {% elif i.status == 'False' %}
+                                     <button class="btn btn-lg btn-warning btn-sm" width="10" aria-disabled="true">Waiting</button>
+                                  {% elif i.status == 'No' %}
+                                     <button class="btn btn-lg btn-dark btn-sm" width="10" aria-disabled="true">Cancled</button>
+                                  {% endif %}
+                                  
+                                </td>
+                            </tr>
+                        {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+ {% endblock Cu_Dash %}

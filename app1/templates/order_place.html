@@ -1,0 +1,54 @@
+{% extends 'cu_dash.html' %}
+{% load static %}
+{% block Cu_Dash %}
+
+<div class="latest-products">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Product Details</h2>
+            </div>
+          </div>
+          <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <form class="forms-sample" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label>Image</label>
+                    
+                    {% if prod.pro_img %}
+                    <br>
+                      <img src="{{ prod.pro_img.url }}" width="200px" alt="">
+                    {% endif %}
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputName1">Name</label>
+                    <input type="text" disabled class="form-control" name="nm" value="{{ prod.pro_nm }}" id="exampleInputName1" placeholder="Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail3">Price</label>
+                    <input type="text" disabled class="form-control" name="em" value="{{ prod.pro_pr }}" id="exampleInputEmail3" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword4">Available QTY</label>
+                    <input type="text" disabled class="form-control" name="pass" value="{{ prod.pro_qty }}" id="exampleInputPassword4" placeholder="Password">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleInputCity1">Enter QTY You Want</label>
+                    <input type="text" class="form-control" name="qty1" id="exampleInputCity1" placeholder="QTY">
+                  </div>
+                  
+                  <button type="submit" class="btn btn-success mr-2">Request</button>
+                  <button class="btn btn-light">Cancel</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     {% endblock Cu_Dash %}

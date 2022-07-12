@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+  {% load static %}
+
+  {% block Dash %}
+  <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Sales chart -->
+                <!-- ============================================================== -->
+             
+                <!-- ============================================================== -->
+                <!-- Sales chart -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Table -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- title -->
+                                <div class="d-md-flex">
+                                    <div>
+                                        <h4 class="card-title"> View Customers</h4>
+                                    <!--    <h5 class="card-subtitle">Overview of Top Selling Items</h5>-->
+                                    </div>
+                                
+                                <!-- title -->
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table v-middle">
+                                    <thead>
+                                        <tr class="bg-light">
+                                            <th class="border-top-0">name</th>
+                                            <th class="border-top-0">Email</th>
+                                            <th class="border-top-0">Contact</th>
+                                            <th class="border-top-0">Address</th>
+                                            <th class="border-top-0">Password</th>
+                                            <th class="border-top-0">Join_date</th>
+                                            <th class="border-top-0">Action</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in user reversed %}
+                                        <tr>
+                                            <td>
+                                               
+                                             <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"><a
+                                                            class="btn btn-circle d-flex btn-info text-white">{{ forloop.counter }}</a>
+                                                    </div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">{{i.cus_nm}}</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{i.cus_em}}</td>
+                                            <td>{{i.cus_con}}</td>
+                                            <td>{{i.cus_add1}} </td>
+                                            <td> {{i.cus_pass}}</td>
+                                            <td>{{i.cus_regi_date}}</td>
+                                           <td><a href="{% url 'Del_Cus' i.id %}"> <button type="Submit" class="btn btn-outline-danger">Delete</button></a></td>
+                                        </tr>
+                                        
+                                         {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+{% endblock Dash %}

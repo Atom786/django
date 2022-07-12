@@ -1,0 +1,126 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block Dash %}
+ 
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Order Notification</h4>
+            <table class="table">
+              <thead class ="table-danger">
+                <tr style= "color: white">
+                  <th>Sr. No.</th>
+                  <th>Cutomer Name</th>
+                  <th>Product Name</th>
+                  <th>QTY</th>
+                  <th>Total Price</th>
+                  <th>Order Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                    {% for i in cords reversed %}
+                    {% if i.status == 'False' %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ i.cust.cus_nm }}</td>
+                            <td>{{ i.prod.pro_nm }}</td>
+                            <td>{{ i.qty }}</td>
+                            <td>{{ i.tot_price }}</td>
+                            <td>{{ i.order_date }}</td>
+                            <td>
+                                <a href="{% url 'YEsOrder' i.id %}" class="btn btn-success mr-2">Accept</a>
+                                <a href="{% url 'NoOrder' i.id %}" class="btn btn-dark mr-2">Cancel</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Order Taken</h4>
+            <table class="table">
+              <thead class ="table-primary">
+                <tr style= "color: white">
+                  <th>Sr. No.</th>
+                  <th>Cutomer Name</th>
+                  <th>Product Name</th>
+                  <th>QTY</th>
+                  <th>Total Price</th>
+                  <th>Order Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+                <tbody>
+                    {% for i in cords reversed %}
+                    {% if i.status == 'Yes' %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ i.cust.cus_nm }}</td>
+                            <td>{{ i.prod.pro_nm }}</td>
+                            <td>{{ i.qty }}</td>
+                            <td>{{ i.tot_price }}</td>
+                            <td>{{ i.order_date }}</td>
+                            <td>
+                                Accepted
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Order Cancle</h4>
+            <table class="table">
+              <thead class ="table-warning">
+                <tr style= "color: white">
+                  <th>Sr. No.</th>
+                  <th>Cutomer Name</th>
+                  <th>Product Name</th>
+                  <th>QTY</th>
+                  <th>Total Price</th>
+                  <th>Order Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+                <tbody>
+                    {% for i in cords reversed %}
+                    {% if i.status == 'No' %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ i.cust.cus_nm }}</td>
+                            <td>{{ i.prod.pro_nm }}</td>
+                            <td>{{ i.qty }}</td>
+                            <td>{{ i.tot_price }}</td>
+                            <td>{{ i.order_date }}</td>
+                            <td>
+                                Canceled
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+</div>
+{% endblock Dash %}
